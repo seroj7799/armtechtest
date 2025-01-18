@@ -11,12 +11,12 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [login, { loading, error }] = useMutation(LOGIN_MUTATION);
-
+  const rememberMe = true;
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const { data } = await login({
-        variables: { data: { email, password } },
+        variables: { data: { email, password,rememberMe } },
       });
       localStorage.setItem('token', data.login);
       alert('Login successful!');
